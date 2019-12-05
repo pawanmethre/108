@@ -1,0 +1,68 @@
+class node:
+    def __init__(self,data):
+        self.data=data
+        self.left=None
+        self.right=None
+        #modifing node structure for the problem no 12 cfor connecting nodes of same level in linked list format
+        self.next=None
+class tree:
+    def __init__(self):
+        self.root=None
+#1
+#creating bst
+def createBST(root):
+    print("enter the size of tree:")
+    n=int(input())
+    if(root==None):
+        print("enter the data:")
+        root=node(int(input()))
+        n=n-1
+    while(n):
+        print("Enter the data to insert into Tree:")
+        node1=node(int(input()))
+        temp=root
+        flag=1
+        while(flag):
+            if(node1.data<temp.data):
+                if(temp.left==None):
+                    temp.left=node1
+                    flag=0
+                    n=n-1
+                else:
+                    temp=temp.left
+            if(node1.data>temp.data):
+                if(temp.right==None):
+                    temp.right=node1
+                    n=n-1
+                    flag=0
+                else:
+                    temp=temp.right
+    return root
+tre=tree()
+root=createBST(tre.root)
+
+#15
+#lowest common ancestor problem for tree
+def LCA(root,p,q):
+    #whenever we traverse beyond leaf null nodes are encountered hence return null back 
+    if(root==None):
+        return None
+    #if root matches wwith the data return to parent
+    if(root.data==p or root.data==q):
+        return root
+    #call recursively for left child and right child result
+    left=LCA(root.left,p,q)
+    right=LCA(root.right,p,q)
+    #if both left and right child returns non null that means both the nodes whose nancestor to be found are found in
+    #the tree retrun the value of root bcos current root is the LCA were both nodes are meeting
+    if(left!=None and right!=None)
+        return root
+    #if both left and right result is  null then return null ,as we have not found even single node whose ancestor to
+    #be found 
+    if(left==None and right==None):
+        return None
+    #return the result which ever is not null to the parent as we have found one element from 2 elements whose ancestor to
+    #be found
+    return (left if left else right)
+    
+    p=LCA(root,8,11)
